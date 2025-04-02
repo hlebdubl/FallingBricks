@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 public class DrawPanel extends JPanel implements MouseListener {
 
-    private boolean[][] grid;
     private int count = 0;
     private int[][] brickLayout;
+    private BrickLayout b;
 
-    public DrawPanel() {
+    public DrawPanel(BrickLayout b) {
         this.addMouseListener(this);
+        this.b = b;
+        brickLayout = b.getBrickLayout();
     }
 
-    BrickLayout b = new BrickLayout("src/bricks", 40, false);
 
     protected void paintComponent(Graphics g) {
-        brickLayout = b.getBrickLayout();
 
         super.paintComponent(g);
 
@@ -46,6 +46,7 @@ public class DrawPanel extends JPanel implements MouseListener {
 
 
     public void mouseClicked(MouseEvent e) {
+
         if(count == 0){
             b.doOneBrick(0);
             count++;
@@ -53,7 +54,6 @@ public class DrawPanel extends JPanel implements MouseListener {
        else{
             b.doOneBrick(1);
         }
-        System.out.println(b.getCurrentHeight());
     }
     public void mousePressed(MouseEvent e) {
     }

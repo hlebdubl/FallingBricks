@@ -10,15 +10,8 @@ public class BrickLayout {
     private int cols;
     private int currentHeight = 0;
 
-
-
-
     public int[][] getBrickLayout() {
         return brickLayout;
-    }
-
-    public int getCurrentHeight() {
-        return currentHeight;
     }
 
     public BrickLayout(String fileName, int cols, boolean dropAllBricks) {
@@ -74,7 +67,7 @@ public class BrickLayout {
 
     public boolean add(int start, int end){
         for(int i = start; i == end; i ++){
-            if(checkBrickSpot(currentHeight, i)){
+            if((checkBrickSpot(currentHeight - 1, i))){
                 return  true;
             }
         }
@@ -110,11 +103,6 @@ public class BrickLayout {
     }
 
     public boolean checkBrickSpot(int r, int c) {
-        if(brickLayout[r][c] == 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return brickLayout[r][c] == 1;
     }
 }
