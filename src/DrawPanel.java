@@ -10,9 +10,9 @@ public class DrawPanel extends JPanel implements MouseListener {
     private int[][] brickLayout;
     private BrickLayout b;
 
-    public DrawPanel(BrickLayout b) {
+    public DrawPanel() {
         this.addMouseListener(this);
-        this.b = b;
+        this.b = new BrickLayout("src/bricks", 40, false);
         brickLayout = b.getBrickLayout();
     }
 
@@ -54,6 +54,7 @@ public class DrawPanel extends JPanel implements MouseListener {
        else{
             b.doOneBrick(1);
         }
+
     }
     public void mousePressed(MouseEvent e) {
     }

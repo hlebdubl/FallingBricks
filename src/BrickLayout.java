@@ -8,10 +8,14 @@ public class BrickLayout {
     private ArrayList<Brick> bricks;
     private int[][] brickLayout;
     private int cols;
-    private int currentHeight = 0;
+    private int currentHeight = 29;
 
     public int[][] getBrickLayout() {
         return brickLayout;
+    }
+
+    public int getCurrentHeight() {
+        return brickLayout.length -  1 - currentHeight;
     }
 
     public BrickLayout(String fileName, int cols, boolean dropAllBricks) {
@@ -44,16 +48,16 @@ public class BrickLayout {
 
             if(count == 0){
                 for(int i = start; i <= end; i ++){
-                    brickLayout[brickLayout.length - 1 - currentHeight][i] = 1;
+                    brickLayout[currentHeight][i] = 1;
                 }
-                currentHeight ++;
+                currentHeight --;
             }
             else{
                 if(add(start, end)){
                     for(int i = start; i <= end; i ++){
-                        brickLayout[brickLayout.length - 1 - currentHeight][i] = 1;
+                        brickLayout[currentHeight][i] = 1;
                     }
-                    currentHeight ++;
+                    currentHeight --;
                 }
                 else{
                     int row = fromZero(start,end);
@@ -66,8 +70,8 @@ public class BrickLayout {
     }
 
     public boolean add(int start, int end){
-        for(int i = start; i == end; i ++){
-            if((checkBrickSpot(currentHeight - 1, i))){
+        for(int i = start; i <= end; i ++){
+            if((checkBrickSpot((currentHeight + 1), i))){
                 return  true;
             }
         }
@@ -75,14 +79,15 @@ public class BrickLayout {
     }
 
     public int fromZero(int start, int end) {
-        int fromZero = brickLayout.length - 1;
-        for (int i = start; i <= end; i++) {
-            if (brickLayout[fromZero][i] == 1) {
-                fromZero--;
-                i = start;
+        for(int max = 0; max < 30; max ++){
+            for(int i = start; i <= end; i ++){
+                if(brickLayout[max][i] == 1){
+                    System.out.println(max);
+                    return max - 1;
+                }
             }
         }
-        return fromZero;
+        return 29;
     }
 
     public ArrayList<String> getFileData(String fileName) {

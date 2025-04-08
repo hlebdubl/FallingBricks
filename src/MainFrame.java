@@ -5,14 +5,12 @@ public class MainFrame extends JFrame implements Runnable {
     private DrawPanel p;
     private Thread windowThread;
 
-    BrickLayout b = new BrickLayout("src/bricks", 40, false);
-
 
     public MainFrame(String display) {
         super(display);
         int frameWidth = 1000;
         int frameHeight = 800;
-        p = new DrawPanel(b);
+        p = new DrawPanel();
         this.add(p);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(frameWidth, frameHeight);
