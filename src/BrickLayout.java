@@ -10,12 +10,14 @@ public class BrickLayout {
     private int cols;
     private int currentHeight = 29;
 
+
+
     public int[][] getBrickLayout() {
         return brickLayout;
     }
 
-    public int getCurrentHeight() {
-        return brickLayout.length -  1 - currentHeight;
+    public ArrayList<Brick> getBricks() {
+        return bricks;
     }
 
     public BrickLayout(String fileName, int cols, boolean dropAllBricks) {
@@ -50,6 +52,7 @@ public class BrickLayout {
                 for(int i = start; i <= end; i ++){
                     brickLayout[currentHeight][i] = 1;
                 }
+                b.setHeight(currentHeight);
                 currentHeight --;
             }
             else{
@@ -57,10 +60,12 @@ public class BrickLayout {
                     for(int i = start; i <= end; i ++){
                         brickLayout[currentHeight][i] = 1;
                     }
+                    b.setHeight(currentHeight);
                     currentHeight --;
                 }
                 else{
                     int row = fromZero(start,end);
+                    b.setHeight(row);
                     for(int i = start; i <= end; i ++){
                         brickLayout[row][i] = 1;
                     }
