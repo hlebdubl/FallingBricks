@@ -9,15 +9,15 @@ public class BrickLayout {
     private int[][] brickLayout;
     private int cols;
     private int currentHeight = 29;
-
+    private ArrayList<Brick> backUp = new ArrayList<Brick>();
 
 
     public int[][] getBrickLayout() {
         return brickLayout;
     }
 
-    public ArrayList<Brick> getBricks() {
-        return bricks;
+    public ArrayList<Brick> getBackUp() {
+        return backUp;
     }
 
     public BrickLayout(String fileName, int cols, boolean dropAllBricks) {
@@ -44,7 +44,7 @@ public class BrickLayout {
     public void doOneBrick(int count) {
         if (bricks.size() != 0) {
             Brick b = bricks.remove(0);
-
+            backUp.add(b);
             int start = b.getStart();
             int end  = b.getEnd();
 

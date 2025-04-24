@@ -2,11 +2,13 @@ public class Brick {
     private int start;
     private int end;
     private int height;
+    private int fallHeight;
 
     public Brick(int start, int end) {
         this.start = start;
         this.end = end;
         this.height = 0;
+        fallHeight = 0;
     }
 
     public int getStart() {
@@ -27,5 +29,13 @@ public class Brick {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getFall() {
+        return fallHeight;
+    }
+
+    public void setFall(int fallHeight) {
+        this.fallHeight = fallHeight;
     }
 }
